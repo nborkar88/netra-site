@@ -1,0 +1,715 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Netra — On-Device Privacy Tunnel & Network Proxy Utility for Android</title>
+  <meta name="description" content="Netra is an advanced, privacy-first Android network utility featuring on-device threat & tracker protection, multi-protocol proxy tunneling (SOCKS5, HTTP, Shadowsocks), and hardware-backed credential encryption. 100% Zero-Logs.">
+  <meta name="keywords" content="Android proxy, SOCKS5 client, Shadowsocks Android, HTTP proxy client, privacy tunnel, on-device ad blocker, tracker protection, VpnService Android, network flow inspector, Netra">
+  <meta name="author" content="Navarambha Labs">
+  <meta name="robots" content="index, follow">
+  <link rel="canonical" href="https://nborkar88.github.io/netra-site/">
+  <meta name="theme-color" content="#2563eb">
+
+  <!-- Open Graph / Facebook -->
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="Netra Network Proxy">
+  <meta property="og:url" content="https://nborkar88.github.io/netra-site/">
+  <meta property="og:title" content="Netra — On-Device Privacy Tunnel & Network Proxy Utility for Android">
+  <meta property="og:description" content="Shield your mobile network against trackers and adware while routing traffic seamlessly through SOCKS5, HTTP, and Shadowsocks proxies. 100% Zero-Logs.">
+  <meta property="og:image" content="https://nborkar88.github.io/netra-site/assets/icon_512.png">
+
+  <!-- Twitter / X -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:url" content="https://nborkar88.github.io/netra-site/">
+  <meta name="twitter:title" content="Netra — Privacy Tunnel & Network Proxy for Android">
+  <meta name="twitter:description" content="On-device dual-barrier threat filtering, multi-protocol proxy tunneling, and hardware credential encryption on Android.">
+  <meta name="twitter:image" content="https://nborkar88.github.io/netra-site/assets/icon_512.png">
+
+  <!-- Favicons -->
+  <link rel="icon" type="image/png" href="assets/icon_512.png">
+  <link rel="apple-touch-icon" href="assets/icon_512.png">
+
+  <link rel="stylesheet" href="css/style.css">
+
+  <!-- Schema.org JSON-LD Structured Data for SEO Rich Snippets -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "SoftwareApplication",
+        "@id": "https://nborkar88.github.io/netra-site/#app",
+        "name": "Netra",
+        "operatingSystem": "Android 8.0 and higher",
+        "applicationCategory": "SecurityApplication, NetworkingApplication",
+        "description": "On-device privacy tunnel and network proxy utility for Android with multi-protocol support (SOCKS5, HTTP, Shadowsocks), dual-barrier threat protection, and real-time traffic inspection.",
+        "offers": {
+          "@type": "Offer",
+          "price": "0.00",
+          "priceCurrency": "USD"
+        },
+        "publisher": {
+          "@type": "Organization",
+          "name": "Navarambha Labs",
+          "url": "https://nborkar88.github.io/netra-site/"
+        },
+        "author": {
+          "@type": "Person",
+          "name": "Nilesh Borkar",
+          "email": "nileshborkar@live.com"
+        },
+        "screenshot": [
+          "https://nborkar88.github.io/netra-site/assets/screenshots/screen_dashboard.png",
+          "https://nborkar88.github.io/netra-site/assets/screenshots/screen_nodes.png",
+          "https://nborkar88.github.io/netra-site/assets/screenshots/screen_traffic.png",
+          "https://nborkar88.github.io/netra-site/assets/screenshots/screen_settings.png"
+        ]
+      },
+      {
+        "@type": "FAQPage",
+        "@id": "https://nborkar88.github.io/netra-site/#faq",
+        "mainEntity": [
+          {
+            "@type": "Question",
+            "name": "Is Netra completely free and zero-logs?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Yes. Netra is 100% free and open-source. It does not require any account creation, does not collect personal identifiers, and strictly does not log browsing history, packet contents, or connection timestamps."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "How does Netra's on-device threat protection work without a remote VPN server?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Netra uses Android's local VpnService interface to intercept network packets on-device. When apps issue DNS queries, Netra matches domain names against an in-memory database of 80,000+ community threat definitions in sub-millisecond time. Known adware and tracking domains are instantly resolved to 0.0.0.0, blackholing them before connections leave your device."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Which outbound proxy protocols are supported by Netra?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Netra natively supports SOCKS5, HTTP CONNECT, Shadowsocks (AEAD AES-256-GCM), and Direct ISP routing, allowing you to dynamically switch outbound nodes in real-time without restarting the VPN."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "How are proxy credentials and secret keys protected on the device?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Sensitive node credentials and pre-shared keys are encrypted with AES-256-GCM via AndroidX EncryptedSharedPreferences, backed directly by hardware-protected keys in the Android Keystore system. They are explicitly excluded from Android cloud backups."
+            }
+          }
+        ]
+      }
+    ]
+  }
+  </script>
+</head>
+<body>
+
+  <!-- Navigation Bar -->
+  <header class="navbar">
+    <div class="container">
+      <a href="#" class="brand">
+        <img src="assets/icon_512.png" alt="Netra Icon" class="brand-icon">
+        <span>Netra</span>
+      </a>
+
+      <nav>
+        <ul class="nav-links" id="navLinks">
+          <li><a href="#features">Features</a></li>
+          <li><a href="#architecture">Architecture</a></li>
+          <li><a href="#screenshots">Screenshots</a></li>
+          <li><a href="#transparency">Transparency</a></li>
+          <li><a href="#faq">FAQ</a></li>
+          <li><a href="#about">About</a></li>
+          <li><a href="#contact">Contact</a></li>
+          <li><a href="privacy.html">Privacy Policy</a></li>
+        </ul>
+      </nav>
+
+      <div class="nav-actions">
+        <button id="themeToggleBtn" class="theme-toggle-btn" aria-label="Toggle Theme">🌙</button>
+        <a href="#download" class="btn btn-primary">Get Netra</a>
+        <button id="mobileToggle" class="mobile-toggle" aria-label="Toggle navigation">☰</button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Hero Section -->
+  <section class="hero" id="home">
+    <div class="container hero-grid">
+      <div class="hero-content">
+        <div class="badge-pill">
+          <span>🛡️</span> 100% On-Device • Zero-Logs Guaranteed
+        </div>
+
+        <h1 class="hero-title">
+          Next-Generation <br>
+          <span class="gradient-text">On-Device Privacy</span> & Proxy Utility
+        </h1>
+
+        <p class="hero-subtitle">
+          Take full control of your Android network traffic. Shield against intrusive adware and covert telemetry with local dual-barrier threat filtering, while routing connections seamlessly through SOCKS5, HTTP CONNECT, and Shadowsocks tunnels.
+        </p>
+
+        <div class="hero-cta">
+          <a href="#download" class="btn btn-primary">
+            <span>⬇️</span> Download on Google Play
+          </a>
+          <a href="#features" class="btn btn-secondary">
+            <span>✨</span> Explore Features
+          </a>
+          <a href="#transparency" class="btn btn-outline">
+            <span>🔒</span> VpnService Policy
+          </a>
+        </div>
+
+        <div class="hero-metrics">
+          <div class="metric-item">
+            <span class="metric-val">80,000+</span>
+            <span class="metric-lbl">Threat Rules</span>
+          </div>
+          <div class="metric-item">
+            <span class="metric-val">&lt; 1 ms</span>
+            <span class="metric-lbl">Filter Latency</span>
+          </div>
+          <div class="metric-item">
+            <span class="metric-val">100%</span>
+            <span class="metric-lbl">Local Loopback</span>
+          </div>
+          <div class="metric-item">
+            <span class="metric-val">0 B</span>
+            <span class="metric-lbl">Remote Data Kept</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Real Device Mockup -->
+      <div class="hero-mockup">
+        <div class="phone-frame">
+          <img src="assets/screenshots/screen_dashboard.png" alt="Netra Dashboard on Android" class="phone-screen">
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Key Features Grid -->
+  <section id="features">
+    <div class="container">
+      <div class="section-header">
+        <div class="badge-pill">Core Capabilities</div>
+        <h2>Engineered for Privacy & High-Speed Routing</h2>
+        <p>Built from source using a zero-copy TUN packet engine, in-memory radix tries, and hardware cryptographic vaults.</p>
+      </div>
+
+      <div class="features-grid">
+        
+        <!-- Feature 1 -->
+        <div class="feature-card">
+          <div class="feature-icon-wrapper icon-blue">🛡️</div>
+          <h3>Dual-Barrier Threat Protection</h3>
+          <p>Primary fast-path UDP 53 DNS blackholing synthesizes instant <code>0.0.0.0</code> responses, while a secondary TCP RST safety net halts leaked sockets before a byte leaves your device.</p>
+          <span class="feature-tag">StevenBlack 80k+ Rules</span>
+        </div>
+
+        <!-- Feature 2 -->
+        <div class="feature-card">
+          <div class="feature-icon-wrapper icon-green">⚡</div>
+          <h3>Universal Outbound Proxy Engine</h3>
+          <p>Natively tunnels traffic across <strong>SOCKS5</strong>, <strong>HTTP CONNECT</strong>, <strong>Shadowsocks AEAD (AES-256-GCM)</strong>, or Direct ISP. Switch active outbound nodes on the fly without reconnecting the VPN.</p>
+          <span class="feature-tag">Multi-Protocol Routing</span>
+        </div>
+
+        <!-- Feature 3 -->
+        <div class="feature-card">
+          <div class="feature-icon-wrapper icon-purple">📊</div>
+          <h3>Real-Time Flow Inspector & Analytics</h3>
+          <p>Inspect every packet in flight. Monitor live uplink and downlink throughput, protocol distribution (TCP / UDP / DNS), and review detailed reasons for blocked threat domains.</p>
+          <span class="feature-tag">Live Telemetry</span>
+        </div>
+
+        <!-- Feature 4 -->
+        <div class="feature-card">
+          <div class="feature-icon-wrapper icon-orange">🔒</div>
+          <h3>Hardware-Backed Credential Vault</h3>
+          <p>Your proxy credentials, usernames, and Shadowsocks secrets are encrypted using AES-256-GCM and stored securely in the hardware-backed <strong>Android Keystore</strong>, excluded from cloud extractions.</p>
+          <span class="feature-tag">AES-256-GCM Keystore</span>
+        </div>
+
+        <!-- Feature 5 -->
+        <div class="feature-card">
+          <div class="feature-icon-wrapper icon-cyan">🔀</div>
+          <h3>Policy Routing & Split Tunneling</h3>
+          <p>Custom rule sets let you bypass corporate intranets, route domestic streaming directly, and proxy sensitive browsing with FQDN and IP CIDR pattern matching.</p>
+          <span class="feature-tag">Smart Routing</span>
+        </div>
+
+        <!-- Feature 6 -->
+        <div class="feature-card">
+          <div class="feature-icon-wrapper icon-red">🎨</div>
+          <h3>Adaptive System Theming</h3>
+          <p>Designed with Material Design 3 guidelines. Seamlessly transitions between crisp Light Mode, deep battery-saving OLED Dark Mode, and dynamic system auto-tracking.</p>
+          <span class="feature-tag">Light & OLED Dark</span>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- Architecture Pipeline Section -->
+  <section id="architecture" style="background: var(--surface-alt);">
+    <div class="container">
+      <div class="section-header">
+        <div class="badge-pill">Under The Hood</div>
+        <h2>Zero-Copy In-Memory Packet Pipeline</h2>
+        <p>How Netra processes, filters, and routes packets with near-zero latency.</p>
+      </div>
+
+      <div class="arch-card">
+        <div class="pipeline-diagram">
+          
+          <div class="pipeline-step">
+            <span class="step-num">Step 1</span>
+            <h4>Traffic Capture</h4>
+            <p>Android <code>VpnService</code> redirects Layer-3 IP packets to the local in-memory TUN interface.</p>
+          </div>
+
+          <div class="pipeline-arrow">➔</div>
+
+          <div class="pipeline-step">
+            <span class="step-num">Step 2</span>
+            <h4>Fast-Path DNS</h4>
+            <p>Port 53 queries matched against 80k rules in a Radix Trie. Threat domains return <code>0.0.0.0</code> immediately.</p>
+          </div>
+
+          <div class="pipeline-arrow">➔</div>
+
+          <div class="pipeline-step">
+            <span class="step-num">Step 3</span>
+            <h4>Routing Policy</h4>
+            <p>Valid requests evaluated against routing rules (Direct, Proxy Node, or Reject) using in-memory Fake-IP mapping.</p>
+          </div>
+
+          <div class="pipeline-arrow">➔</div>
+
+          <div class="pipeline-step">
+            <span class="step-num">Step 4</span>
+            <h4>Outbound Relay</h4>
+            <p>Relayed via protected sockets over SOCKS5, HTTP CONNECT, or Shadowsocks AEAD to destination.</p>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- High-Resolution Device Screenshots Gallery -->
+  <section id="screenshots">
+    <div class="container">
+      <div class="section-header">
+        <div class="badge-pill">User Experience</div>
+        <h2>Captured on Physical Hardware</h2>
+        <p>Real-world captures from a physical Xiaomi Mi A1 device running Android.</p>
+      </div>
+
+      <div class="gallery-nav">
+        <button class="gallery-tab active" data-filter="all">All Screens</button>
+        <button class="gallery-tab" data-filter="dashboard">Dashboard</button>
+        <button class="gallery-tab" data-filter="nodes">Proxy Nodes</button>
+        <button class="gallery-tab" data-filter="traffic">Traffic Inspector</button>
+        <button class="gallery-tab" data-filter="settings">Settings</button>
+      </div>
+
+      <div class="screenshots-grid">
+        
+        <!-- Screen 1: Dashboard -->
+        <figure class="screenshot-card" data-category="dashboard">
+          <img src="assets/screenshots/screen_dashboard.png" alt="Netra Active Dashboard Screen" loading="lazy">
+          <figcaption>Active Dashboard</figcaption>
+          <span class="caption-sub">One-tap connect, live speeds & threat counter</span>
+        </figure>
+
+        <!-- Screen 2: Nodes -->
+        <figure class="screenshot-card" data-category="nodes">
+          <img src="assets/screenshots/screen_nodes.png" alt="Netra Proxy Nodes Management" loading="lazy">
+          <figcaption>Proxy Nodes Management</figcaption>
+          <span class="caption-sub">SOCKS5, HTTP, Shadowsocks with real relay test</span>
+        </figure>
+
+        <!-- Screen 3: Traffic Inspector -->
+        <figure class="screenshot-card" data-category="traffic">
+          <img src="assets/screenshots/screen_traffic.png" alt="Netra Traffic Analytics Screen" loading="lazy">
+          <figcaption>Traffic & Analytics</figcaption>
+          <span class="caption-sub">Peak bandwidth telemetry & protocol distribution</span>
+        </figure>
+
+        <!-- Screen 4: Blocked Inspector -->
+        <figure class="screenshot-card" data-category="traffic">
+          <img src="assets/screenshots/screen_blocked.png" alt="Netra Blocked Flows Inspector" loading="lazy">
+          <figcaption>Flow-Level Threat Filter</figcaption>
+          <span class="caption-sub">Isolated DNS blackholing of tracking endpoints</span>
+        </figure>
+
+        <!-- Screen 5: Settings -->
+        <figure class="screenshot-card" data-category="settings">
+          <img src="assets/screenshots/screen_settings.png" alt="Netra Settings & Theming" loading="lazy">
+          <figcaption>Settings & System Themes</figcaption>
+          <span class="caption-sub">Light, Dark OLED, and rule updater</span>
+        </figure>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- Modal Lightbox for Zooming Screenshots -->
+  <div class="lightbox-modal" id="lightboxModal">
+    <div class="lightbox-content">
+      <button class="lightbox-close" id="lightboxClose">&times;</button>
+      <img src="" alt="Enlarged Screenshot" id="lightboxImg">
+    </div>
+  </div>
+
+  <!-- Google Play & VpnService Transparency Section -->
+  <section id="transparency" style="background: var(--surface-alt);">
+    <div class="container">
+      <div class="section-header">
+        <div class="badge-pill">Compliance & Trust</div>
+        <h2>VpnService Declaration & Google Play Policy Alignment</h2>
+        <p>Total transparency on how Netra handles your network traffic and why system permissions are used.</p>
+      </div>
+
+      <div class="arch-card">
+        <h3>Why Netra Utilizes Android's VpnService API</h3>
+        <p style="margin: 0.75rem 0 1.5rem; color: var(--text-secondary);">
+          Android requires apps that inspect or route Layer-3 network packets to use the official <code>VpnService</code> framework. Netra operates as a <strong>client-side local tunnel utility</strong> rather than a commercial surveillance VPN:
+        </p>
+
+        <div class="features-grid" style="grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));">
+          <div class="feature-card">
+            <div class="feature-icon-wrapper icon-green">🏠</div>
+            <h4>Local Device Loopback</h4>
+            <p>Packets processed by Netra's TUN interface are filtered and evaluated entirely in local device memory. No data is sent to central company servers.</p>
+          </div>
+          <div class="feature-card">
+            <div class="feature-icon-wrapper icon-blue">🚫</div>
+            <h4>Strict Zero-Log Architecture</h4>
+            <p>Netra never logs, stores, or transmits browsing history, DNS lookups, app usage, or payload packets. No telemetry SDKs are included in the app.</p>
+          </div>
+          <div class="feature-card">
+            <div class="feature-icon-wrapper icon-purple">🔐</div>
+            <h4>Hardware Keystore Protection</h4>
+            <p>Sensitive proxy passwords and Shadowsocks keys are encrypted via AES-256-GCM and stored directly in the hardware-backed Android Keystore.</p>
+          </div>
+        </div>
+
+        <h3 style="margin-top: 2.5rem;">Android System Permissions Breakdown</h3>
+        <div class="table-wrapper">
+          <table>
+            <thead>
+              <tr>
+                <th>Permission</th>
+                <th>System Identifier</th>
+                <th>Requirement</th>
+                <th>Purpose</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><strong>VPN Service</strong></td>
+                <td><code>BIND_VPN_SERVICE</code></td>
+                <td><span class="badge-tag badge-required">Mandatory</span></td>
+                <td>Instantiates local TUN interface for on-device threat filtering and proxy socket routing.</td>
+              </tr>
+              <tr>
+                <td><strong>Internet Access</strong></td>
+                <td><code>INTERNET</code></td>
+                <td><span class="badge-tag badge-required">Mandatory</span></td>
+                <td>Transmits outbound traffic to your user-configured proxy servers and downloads blocklist updates.</td>
+              </tr>
+              <tr>
+                <td><strong>Network State</strong></td>
+                <td><code>ACCESS_NETWORK_STATE</code></td>
+                <td><span class="badge-tag badge-required">Mandatory</span></td>
+                <td>Monitors Wi-Fi and Cellular transitions to maintain socket resilience without dropped packets.</td>
+              </tr>
+              <tr>
+                <td><strong>Change Network State</strong></td>
+                <td><code>CHANGE_NETWORK_STATE</code></td>
+                <td><span class="badge-tag badge-required">Mandatory</span></td>
+                <td>Enables socket protection to bypass the VPN tunnel for proxy outbound connections (<code>VpnService.protect()</code>).</td>
+              </tr>
+              <tr>
+                <td><strong>Foreground Service</strong></td>
+                <td><code>FOREGROUND_SERVICE</code></td>
+                <td><span class="badge-tag badge-required">Mandatory</span></td>
+                <td>Maintains continuous packet processing while switching between different applications.</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ Section (Schema.org Indexed) -->
+  <section id="faq">
+    <div class="container">
+      <div class="section-header">
+        <div class="badge-pill">Answers & FAQ</div>
+        <h2>Frequently Asked Questions</h2>
+        <p>Everything you need to know about Netra's architecture, security, and operation.</p>
+      </div>
+
+      <div class="faq-list">
+        
+        <div class="faq-item">
+          <button class="faq-question">
+            <span>Is Netra zero-logs and private?</span>
+            <span class="faq-icon">+</span>
+          </button>
+          <div class="faq-answer">
+            <p>Yes, absolutely. Netra operates on a strict, uncompromising Zero-Log Policy. It requires no account registration, no phone number, and does not monitor or store your browsing history, IP addresses, DNS queries, or app activity. All packet filtering occurs 100% locally on your device.</p>
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <button class="faq-question">
+            <span>How does threat protection work without routing to an external VPN server?</span>
+            <span class="faq-icon">+</span>
+          </button>
+          <div class="faq-answer">
+            <p>Unlike commercial VPN services that route all your traffic to their remote cloud servers, Netra runs a local packet engine directly on your phone via Android's local <code>VpnService</code>. When apps resolve domains, Netra intercepts the DNS request and checks it against 80,000+ threat definitions compiled into an in-memory Radix Trie. If matched, it returns <code>0.0.0.0</code> immediately, neutralizing the threat before any network data leaves your device.</p>
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <button class="faq-question">
+            <span>Which proxy protocols are supported?</span>
+            <span class="faq-icon">+</span>
+          </button>
+          <div class="faq-answer">
+            <p>Netra natively supports <strong>SOCKS5</strong> (with username/password authentication), <strong>HTTP CONNECT</strong> (standard forward proxy tunneling), <strong>Shadowsocks</strong> (using modern AEAD ciphers like AES-256-GCM), and <strong>Direct ISP routing</strong>. You can switch between active nodes in real-time without restarting your VPN session.</p>
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <button class="faq-question">
+            <span>How are my proxy credentials and secret keys stored?</span>
+            <span class="faq-icon">+</span>
+          </button>
+          <div class="faq-answer">
+            <p>Netra uses AndroidX <code>EncryptedSharedPreferences</code> backed by the hardware-protected <strong>Android Keystore</strong>. Passwords and Shadowsocks keys are encrypted using AES-256-GCM at rest. Furthermore, our backup rules explicitly exclude credential stores from Google Drive cloud backups to protect your keys against remote extraction.</p>
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <button class="faq-question">
+            <span>Does Netra drain battery or degrade network speeds?</span>
+            <span class="faq-icon">+</span>
+          </button>
+          <div class="faq-answer">
+            <p>No. Netra was built with high-efficiency Kotlin coroutines, direct NIO byte buffers, and memory-optimized Radix Tries that consume under 8MB of RAM for 80,000+ rules. By dropping ads and tracking scripts before their multi-megabyte payloads can download, Netra often improves overall page load speeds and saves mobile cellular data.</p>
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <button class="faq-question">
+            <span>Can I customize blocklists or whitelist false positives?</span>
+            <span class="faq-icon">+</span>
+          </button>
+          <div class="faq-answer">
+            <p>Yes. In the Traffic Inspector tab, tapping any blocked flow opens the "Why Was This Blocked?" inspector where you can tap "Allow Once" (temporary bypass for current session) or "Always Allow" (persisted whitelist) to easily resolve any false positives.</p>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- About Us Section -->
+  <section id="about" style="background: var(--surface-alt);">
+    <div class="container">
+      <div class="section-header">
+        <div class="badge-pill">About Us</div>
+        <h2>Built by Navarambha Labs</h2>
+        <p>Committed to advancing digital privacy through cutting-edge network engineering.</p>
+      </div>
+
+      <div class="contact-grid">
+        <div class="contact-info">
+          <h3>Our Mission</h3>
+          <p style="color: var(--text-secondary);">
+            Navarambha Labs was founded on the belief that personal privacy should be transparent, uncompromising, and technically verifiable. Modern commercial VPNs often replace your ISP with an equally opaque centralized corporation that can log, monetize, or leak your data.
+          </p>
+          <p style="color: var(--text-secondary);">
+            With <strong>Netra</strong>, we turned the model inside out: you control your own nodes, you inspect every packet in real time, and our engine operates completely on your local device without any remote intermediaries.
+          </p>
+          <div style="margin-top: 1rem;">
+            <a href="#contact" class="btn btn-secondary">
+              ✉️ Contact Our Team
+            </a>
+          </div>
+        </div>
+
+        <div class="features-grid" style="grid-template-columns: 1fr;">
+          <div class="feature-card">
+            <h4>Privacy-First Architecture</h4>
+            <p>Engineered without centralized surveillance relays. All traffic routing and threat blocking execute directly in device memory.</p>
+          </div>
+          <div class="feature-card">
+            <h4>Zero Monetization of User Data</h4>
+            <p>We do not operate ad networks, sell analytics, or gather user telemetry. Your network data remains strictly private.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Contact Us Section -->
+  <section id="contact">
+    <div class="container">
+      <div class="section-header">
+        <div class="badge-pill">Get In Touch</div>
+        <h2>Contact Us & Support</h2>
+        <p>Have questions, suggestions, or need assistance? Reach out directly to the development team.</p>
+      </div>
+
+      <div class="contact-grid">
+        
+        <div class="contact-info">
+          <div class="contact-card">
+            <div class="contact-card-icon">✉️</div>
+            <div>
+              <h4>Developer Email</h4>
+              <p><a href="mailto:nileshborkar@live.com">nileshborkar@live.com</a></p>
+              <span class="caption-sub">Direct support & inquiries</span>
+            </div>
+          </div>
+
+          <div class="contact-card">
+            <div class="contact-card-icon">⚡</div>
+            <div>
+              <h4>Technical Support</h4>
+              <p><a href="mailto:nileshborkar@live.com?subject=Netra%20Support">nileshborkar@live.com</a></p>
+              <span class="caption-sub">Bug reports & feature requests</span>
+            </div>
+          </div>
+
+          <div class="contact-card">
+            <div class="contact-card-icon">📜</div>
+            <div>
+              <h4>Privacy Inquiries</h4>
+              <p><a href="privacy.html">Review Our Privacy Policy</a></p>
+              <span class="caption-sub">Detailed data handling disclosures</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Feedback / Message Form -->
+        <form class="contact-form" id="contactForm">
+          <div class="form-group">
+            <label for="contactName">Your Name</label>
+            <input type="text" id="contactName" class="form-control" placeholder="Enter your name" required>
+          </div>
+
+          <div class="form-group">
+            <label for="contactEmail">Email Address</label>
+            <input type="email" id="contactEmail" class="form-control" placeholder="name@example.com" required>
+          </div>
+
+          <div class="form-group">
+            <label for="contactSubject">Subject</label>
+            <input type="text" id="contactSubject" class="form-control" placeholder="Bug Report / Feature Suggestion / Question" required>
+          </div>
+
+          <div class="form-group">
+            <label for="contactMessage">Message</label>
+            <textarea id="contactMessage" class="form-control" placeholder="Describe your inquiry in detail..." required></textarea>
+          </div>
+
+          <button type="submit" class="btn btn-primary" style="width: 100%;">
+            <span>✉️</span> Send Message via Email
+          </button>
+
+          <div id="formSuccess" style="display: none; color: var(--success); font-weight: 600; font-size: 0.9rem; text-align: center; margin-top: 0.5rem;"></div>
+        </form>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- Download Section -->
+  <section id="download" style="background: var(--surface-alt); text-align: center;">
+    <div class="container">
+      <div class="section-header" style="margin-bottom: 2rem;">
+        <div class="badge-pill">Get Started</div>
+        <h2>Ready to Secure Your Android Network?</h2>
+        <p>Experience high-speed proxy tunneling and zero-latency on-device threat protection today.</p>
+      </div>
+      <div style="display: flex; justify-content: center; gap: 1rem; flex-wrap: wrap;">
+        <a href="mailto:nileshborkar@live.com?subject=Netra%20Android%20Beta%20Access" class="btn btn-primary" style="font-size: 1.05rem; padding: 0.85rem 1.75rem;">
+          <span>🚀</span> Request Early Access / Beta
+        </a>
+        <a href="#features" class="btn btn-secondary" style="font-size: 1.05rem; padding: 0.85rem 1.75rem;">
+          <span>🔍</span> Explore Features
+        </a>
+      </div>
+      <p style="margin-top: 1.5rem; font-size: 0.88rem; color: var(--text-muted);">
+        Compatible with Android 8.0 (API 26) and above • Coming soon to the Google Play Store
+      </p>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer>
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <div class="brand">
+            <img src="assets/icon_512.png" alt="Netra Icon" class="brand-icon">
+            <span>Netra</span>
+          </div>
+          <p>Next-generation on-device privacy tunnel and network proxy utility for Android. 100% Zero-Logs.</p>
+        </div>
+
+        <div class="footer-col">
+          <h5>Navigation</h5>
+          <ul>
+            <li><a href="#features">Features</a></li>
+            <li><a href="#architecture">Architecture</a></li>
+            <li><a href="#screenshots">Screenshots</a></li>
+            <li><a href="#faq">FAQ</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-col">
+          <h5>Legal & Security</h5>
+          <ul>
+            <li><a href="privacy.html">Privacy Policy</a></li>
+            <li><a href="#transparency">VpnService Disclosure</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-col">
+          <h5>Support</h5>
+          <ul>
+            <li><a href="mailto:nileshborkar@live.com">Contact Developer</a></li>
+            <li><a href="#download">Early Access</a></li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <p>&copy; 2026 Navarambha Labs. Developed by Nilesh Borkar. All Rights Reserved.</p>
+        <p>Crafted with privacy in mind</p>
+      </div>
+    </div>
+  </footer>
+
+  <script src="js/main.js"></script>
+</body>
+</html>

@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Privacy Policy — Netra Privacy Tunnel & Network Proxy</title>
+  <meta name="description" content="Official Privacy Policy for Netra — on-device privacy tunnel and network proxy utility for Android. Explaining our strict Zero-Logs guarantee and VpnService usage.">
+  <meta name="robots" content="index, follow">
+  <meta name="author" content="Navarambha Labs">
+  <link rel="canonical" href="https://nborkar88.github.io/netra-site/privacy.html">
+
+  <!-- Open Graph -->
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Netra Privacy Policy — Zero-Logs & On-Device Security">
+  <meta property="og:description" content="Netra operates 100% locally on your device with hardware credential encryption and strict zero logging.">
+  <meta property="og:url" content="https://nborkar88.github.io/netra-site/privacy.html">
+  <meta property="og:image" content="https://nborkar88.github.io/netra-site/assets/icon_512.png">
+
+  <!-- Favicon -->
+  <link rel="icon" type="image/png" href="assets/icon_512.png">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+  <!-- Navigation Bar -->
+  <header class="navbar">
+    <div class="container">
+      <a href="index.html" class="brand">
+        <img src="assets/icon_512.png" alt="Netra Icon" class="brand-icon">
+        <span>Netra</span>
+      </a>
+
+      <nav>
+        <ul class="nav-links" id="navLinks">
+          <li><a href="index.html#features">Features</a></li>
+          <li><a href="index.html#architecture">Architecture</a></li>
+          <li><a href="index.html#screenshots">Screenshots</a></li>
+          <li><a href="index.html#transparency">Transparency</a></li>
+          <li><a href="index.html#faq">FAQ</a></li>
+          <li><a href="index.html#contact">Contact</a></li>
+          <li><a href="privacy.html" class="active">Privacy Policy</a></li>
+        </ul>
+      </nav>
+
+      <div class="nav-actions">
+        <button id="themeToggleBtn" class="theme-toggle-btn" aria-label="Toggle Theme">🌙</button>
+        <a href="index.html#download" class="btn btn-primary">Get Netra</a>
+        <button id="mobileToggle" class="mobile-toggle" aria-label="Toggle navigation">☰</button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Legal Header -->
+  <section class="legal-header">
+    <div class="container">
+      <div class="badge-pill">Legal & Compliance</div>
+      <h1 class="hero-title" style="margin-top: 0.75rem; font-size: 2.75rem;">Privacy Policy</h1>
+      <div class="legal-meta">
+        <span><strong>Effective Date:</strong> September 5, 2026</span>
+        <span><strong>Publisher:</strong> Navarambha Labs</span>
+        <span><strong>Product:</strong> Netra for Android</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- Legal Body -->
+  <main class="legal-body">
+    <div class="container">
+      <div class="legal-grid">
+        
+        <!-- Table of Contents Sticky Sidebar -->
+        <aside class="legal-toc">
+          <h4>Table of Contents</h4>
+          <ul>
+            <li><a href="#intro">1. Introduction & Philosophy</a></li>
+            <li><a href="#zerolog">2. Zero-Log Policy (What We Do NOT Collect)</a></li>
+            <li><a href="#vpnservice">3. How Netra Uses VpnService</a></li>
+            <li><a href="#security">4. Local Storage & Hardware Vault</a></li>
+            <li><a href="#permissions">5. Permissions & Justifications</a></li>
+            <li><a href="#thirdparty">6. External Connections & Blocklists</a></li>
+            <li><a href="#regulations">7. GDPR, CCPA & Global Compliance</a></li>
+            <li><a href="#contact">8. Developer & Legal Contact</a></li>
+          </ul>
+        </aside>
+
+        <!-- Content Area -->
+        <article class="legal-content">
+          
+          <div class="callout-box">
+            <strong>Summary:</strong> Netra operates entirely locally on your device. We enforce a strict, uncompromising Zero-Log Policy. Your traffic, browsing history, and DNS queries never pass through centralized servers owned or operated by Navarambha Labs.
+          </div>
+
+          <h2 id="intro">1. Introduction & Core Privacy Philosophy</h2>
+          <p>At <strong>Navarambha Labs</strong>, we believe that privacy is a fundamental human right. <strong>Netra</strong> was engineered from the ground up on a simple, non-negotiable principle:</p>
+          <p><em>Your network traffic belongs to you and no one else. Netra operates entirely locally on your device and enforces a strict, uncompromising Zero-Log Policy.</em></p>
+          <p>This Privacy Policy explains how Netra handles information when you use our Android application. Unlike traditional commercial VPN operators, Netra is a client-side proxy utility and privacy tunnel. We do not operate centralized tracking servers, proxy relays, data harvesting infrastructure, or advertising networks.</p>
+
+          <h2 id="zerolog">2. Information We DO NOT Collect (Zero-Log Policy)</h2>
+          <p>Netra does <strong>NOT</strong> collect, monitor, log, store, or transmit any of the following:</p>
+          <ul>
+            <li>❌ <strong>No Browsing History:</strong> We do not log web pages visited, searches conducted, or applications accessed.</li>
+            <li>❌ <strong>No Traffic Payloads:</strong> Packet data traversing the local tunnel is never inspected, recorded, or mirrored.</li>
+            <li>❌ <strong>No DNS Query Logs:</strong> Domain name lookups intercepted by Netra's on-device DNS engine are resolved in-memory and immediately discarded.</li>
+            <li>❌ <strong>No Connection Timestamps or IP Addresses:</strong> We do not log when you connect, when you disconnect, or your originating/destination IP addresses.</li>
+            <li>❌ <strong>No Personal Identifiable Information (PII):</strong> Netra requires no user accounts, no email addresses, no telephone numbers, and no payment card data.</li>
+            <li>❌ <strong>No Device Fingerprinting:</strong> We do not track IMEI, MAC addresses, Android Advertising IDs (AAID), or hardware identifiers.</li>
+          </ul>
+
+          <h2 id="vpnservice">3. How Netra Uses Android's VpnService API</h2>
+          <p>Netra utilizes Android’s official <code>VpnService</code> API to establish a local, virtual network interface (<code>tun0</code>) on your Android device.</p>
+          
+          <h3>Why VpnService is Required:</h3>
+          <ol>
+            <li><strong>Local Traffic Capture & Routing:</strong> <code>VpnService</code> allows Netra to intercept outbound Layer-3 IP packets directly on your device and route them through user-configured proxy servers (SOCKS5, HTTP CONNECT, or Shadowsocks).</li>
+            <li><strong>On-Device Threat & Tracker Filtering:</strong> The local tunnel intercepts UDP port 53 DNS queries to evaluate requested domains against locally stored threat definitions. Matching tracker or advertising domains are blackholed locally to <code>0.0.0.0</code> before unwanted connections can leave your device.</li>
+          </ol>
+
+          <h3>Key Architectural Disclosures:</h3>
+          <ul>
+            <li><strong>100% Local Loopback:</strong> All packet processing, Fake-IP synthesis, and domain filtering occur locally in your device's memory.</li>
+            <li><strong>No Third-Party Routing by Default:</strong> In "Direct" mode or when proxy nodes are inactive, traffic flows directly from your device to destination servers via your network provider without passing through Navarambha Labs.</li>
+            <li><strong>User-Defined Relays:</strong> Traffic routed through proxies is transmitted only to the specific servers, hostnames, and ports that you explicitly configure or import.</li>
+          </ul>
+
+          <h2 id="security">4. Local Storage & Hardware-Backed Credential Security</h2>
+          <p>All configuration data entered into Netra remains strictly on your local device:</p>
+          <ul>
+            <li><strong>Hardware-Backed Credential Encryption:</strong> Sensitive proxy credentials (usernames, passwords, Shadowsocks pre-shared keys) are encrypted using <strong>AES-256-GCM</strong> via AndroidX <code>EncryptedSharedPreferences</code>, with master cryptographic keys securely stored in the hardware-backed <strong>Android Keystore system</strong>.</li>
+            <li><strong>Cloud Backup Exclusion:</strong> Sensitive credential vaults are explicitly excluded from Android Auto Backup and Google Drive device transfers (<code>backup_rules.xml</code> and <code>data_extraction_rules.xml</code>) to prevent unauthorized cloud extraction.</li>
+            <li><strong>Manual Backups:</strong> If you export your configuration or save a snapshot to Google Drive, the file is transferred directly via Android's Storage Access Framework (SAF) / FileProvider under your direct control.</li>
+          </ul>
+
+          <h2 id="permissions">5. Android Permissions & Justifications</h2>
+          <p>Netra requests only the minimal permissions required to function as an on-device network proxy utility:</p>
+
+          <div class="table-wrapper">
+            <table>
+              <thead>
+                <tr>
+                  <th>Permission</th>
+                  <th>Identifier</th>
+                  <th>Status</th>
+                  <th>Purpose</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td><strong>VPN Service</strong></td>
+                  <td><code>BIND_VPN_SERVICE</code></td>
+                  <td><span class="badge-tag badge-required">Core</span></td>
+                  <td>Establishes the local TUN interface for on-device packet filtering and proxy routing.</td>
+                </tr>
+                <tr>
+                  <td><strong>Internet Access</strong></td>
+                  <td><code>INTERNET</code></td>
+                  <td><span class="badge-tag badge-required">Required</span></td>
+                  <td>Transmits outbound traffic to user-configured proxy servers and updates community rule definitions.</td>
+                </tr>
+                <tr>
+                  <td><strong>Network State</strong></td>
+                  <td><code>ACCESS_NETWORK_STATE</code></td>
+                  <td><span class="badge-tag badge-required">Required</span></td>
+                  <td>Monitors Wi-Fi and Cellular network transitions to prevent dropped sockets.</td>
+                </tr>
+                <tr>
+                  <td><strong>Change Network State</strong></td>
+                  <td><code>CHANGE_NETWORK_STATE</code></td>
+                  <td><span class="badge-tag badge-required">Required</span></td>
+                  <td>Allows socket protection to bypass the VPN tunnel for proxy outbound connections (<code>VpnService.protect()</code>).</td>
+                </tr>
+                <tr>
+                  <td><strong>Foreground Service</strong></td>
+                  <td><code>FOREGROUND_SERVICE</code></td>
+                  <td><span class="badge-tag badge-required">Required</span></td>
+                  <td>Keeps the packet processing engine alive in the background while other apps are active.</td>
+                </tr>
+                <tr>
+                  <td><strong>Notifications</strong></td>
+                  <td><code>POST_NOTIFICATIONS</code></td>
+                  <td><span class="badge-tag badge-optional">Optional</span></td>
+                  <td>Displays a persistent notification showing active tunnel state and live uplink/downlink speeds.</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+
+          <h2 id="thirdparty">6. External Connections & Community Definitions</h2>
+          <p>Netra initiates outbound connections to external endpoints only in the following user-directed scenarios:</p>
+          <ol>
+            <li><strong>User-Configured Proxy Nodes:</strong> Outbound traffic routed through SOCKS5, HTTP CONNECT, or Shadowsocks connects exclusively to the endpoints you designate.</li>
+            <li><strong>Upstream Encrypted DNS:</strong> If configured, Netra dispatches encrypted DNS queries to standard public resolvers (e.g., Cloudflare <code>1.1.1.1</code>, Google <code>8.8.8.8</code>, Quad9 <code>9.9.9.9</code>).</li>
+            <li><strong>Community Threat Definitions:</strong> When you tap "Update Threat Definitions Now", Netra downloads plain text rule files from reputable public repositories (such as StevenBlack unified hosts). Zero telemetry or device identifiers are sent during these downloads.</li>
+          </ol>
+
+          <h2 id="regulations">7. Global Privacy Regulations Compliance</h2>
+          
+          <h3>GDPR (General Data Protection Regulation - EU)</h3>
+          <p>Because Netra does not collect, transmit, store, or process personal data on remote servers, Navarambha Labs acts neither as a Data Controller nor as a Data Processor under the GDPR. No personal data is transferred across international borders.</p>
+
+          <h3>CCPA / CPRA (California Consumer Privacy Act)</h3>
+          <p>We do not sell, rent, or trade personal information. Because zero personal data is gathered, there is no personal data to disclose or delete upon request.</p>
+
+          <h3>COPPA (Children’s Online Privacy Protection Act)</h3>
+          <p>Netra is a technical network utility and is not directed towards children under the age of 13. We do not knowingly collect information from children.</p>
+
+          <h2 id="contact">8. Developer & Legal Contact</h2>
+          <p>If you have any questions, suggestions, or concerns regarding this Privacy Policy or Netra’s architectural privacy safeguards, please contact us:</p>
+          <ul>
+            <li><strong>Developer:</strong> Nilesh Borkar / Navarambha Labs</li>
+            <li><strong>Email:</strong> <a href="mailto:nileshborkar@live.com">nileshborkar@live.com</a></li>
+            <li><strong>Website:</strong> <a href="index.html">Netra Official Website</a></li>
+          </ul>
+
+        </article>
+      </div>
+    </div>
+  </main>
+
+  <!-- Footer -->
+  <footer>
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <div class="brand">
+            <img src="assets/icon_512.png" alt="Netra Icon" class="brand-icon">
+            <span>Netra</span>
+          </div>
+          <p>Next-generation on-device privacy tunnel and network proxy utility for Android. 100% Zero-Logs.</p>
+        </div>
+
+        <div class="footer-col">
+          <h5>Navigation</h5>
+          <ul>
+            <li><a href="index.html#features">Features</a></li>
+            <li><a href="index.html#architecture">Architecture</a></li>
+            <li><a href="index.html#screenshots">Screenshots</a></li>
+            <li><a href="index.html#faq">FAQ</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-col">
+          <h5>Legal & Security</h5>
+          <ul>
+            <li><a href="privacy.html">Privacy Policy</a></li>
+            <li><a href="index.html#transparency">VpnService Disclosure</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-col">
+          <h5>Support</h5>
+          <ul>
+            <li><a href="mailto:nileshborkar@live.com">Contact Developer</a></li>
+            <li><a href="index.html#download">Early Access</a></li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <p>&copy; 2026 Navarambha Labs. Developed by Nilesh Borkar. All Rights Reserved.</p>
+        <p>Crafted with privacy in mind</p>
+      </div>
+    </div>
+  </footer>
+
+  <script src="js/main.js"></script>
+</body>
+</html>
