@@ -50,7 +50,7 @@
             "name": "Netra Free",
             "price": "0.00",
             "priceCurrency": "INR",
-            "description": "Free tier: threat protection, Cloudflare DoH node, traffic analytics."
+            "description": "Free tier: threat protection, default secure DoH node, traffic analytics."
           },
           {
             "@type": "Offer",
@@ -231,7 +231,7 @@
           <div class="feature-icon-wrapper icon-blue">🛡️</div>
           <h3>Dual-Barrier Threat Protection</h3>
           <p>Primary fast-path UDP 53 DNS blackholing synthesizes instant <code>0.0.0.0</code> responses, while a secondary TCP RST safety net halts leaked sockets before a byte leaves your device.</p>
-          <span class="feature-tag">StevenBlack 80k+ Rules</span>
+          <span class="feature-tag">80k+ Unified Threat Rules</span>
         </div>
 
         <!-- Feature 2 -->
@@ -278,7 +278,7 @@
         <div class="feature-card">
           <div class="feature-icon-wrapper icon-orange">📲</div>
           <h3>Per-App VPN Bypass</h3>
-          <p>Some ad-supported apps (e.g. Diskwala, JioCinema) refuse to open when ad-blocking is active. Netra lets you exclude any installed app from the tunnel with a single toggle — no root needed. Every other app keeps full protection.</p>
+          <p>Some media, carrier, or ad-supported apps refuse to open when active network protection is detected. Netra lets you exclude any installed app from the tunnel with a single toggle — no root needed. Every other app keeps full protection.</p>
           <span class="feature-tag">App Exclusion List</span>
         </div>
 
@@ -348,7 +348,7 @@
       <div class="section-header">
         <div class="badge-pill">User Experience</div>
         <h2>Captured on Physical Hardware</h2>
-        <p>Real-world captures from physical hardware — Xiaomi Mi A1 (Android 14, 1080×1920) and Lenovo Tab M11 (Android 16, 2560×1600).</p>
+        <p>Real-world captures from physical Android smartphone (1080×1920) and tablet (2560×1600) hardware.</p>
       </div>
 
       <div class="gallery-nav">
@@ -537,7 +537,7 @@
             <span class="faq-icon">+</span>
           </button>
           <div class="faq-answer">
-            <p>Netra uses AndroidX <code>EncryptedSharedPreferences</code> backed by the hardware-protected <strong>Android Keystore</strong>. Passwords and Shadowsocks keys are encrypted using AES-256-GCM at rest. Furthermore, our backup rules explicitly exclude credential stores from Google Drive cloud backups to protect your keys against remote extraction.</p>
+            <p>Netra uses AndroidX <code>EncryptedSharedPreferences</code> backed by the hardware-protected <strong>Android Keystore</strong>. Passwords and Shadowsocks keys are encrypted using AES-256-GCM at rest. Furthermore, our backup rules explicitly exclude credential stores from automated cloud backups to protect your keys against remote extraction.</p>
           </div>
         </div>
 
@@ -567,7 +567,7 @@
             <span class="faq-icon">+</span>
           </button>
           <div class="faq-answer">
-            <p>Netra follows a <strong>freemium model</strong>. The <strong>free tier</strong> is fully functional and includes on-device threat & adware shield, one pre-configured Cloudflare DoH node, and real-time traffic analytics — all with zero logs and no account required.</p>
+            <p>Netra follows a <strong>freemium model</strong>. The <strong>free tier</strong> is fully functional and includes on-device threat & adware shield, one pre-configured secure DoH node, and real-time traffic analytics — all with zero logs and no account required.</p>
             <p style="margin-top: 0.5rem;"><strong>Netra Pro</strong> is available for <strong>₹99/month</strong> or <strong>₹999/year</strong> (~16% discount) via Google Play. It unlocks: unlimited custom proxy nodes (SOCKS5, Shadowsocks AEAD, HTTP), cross-app tracker protection, smart split tunneling (per-app proxy bypass), the custom routing rules engine (domain/CIDR rules), and the full live traffic inspector. The subscription is managed entirely through Google Play — cancel anytime.</p>
           </div>
         </div>

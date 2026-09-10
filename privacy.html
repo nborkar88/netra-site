@@ -126,8 +126,8 @@
           <p>All configuration data entered into Netra remains strictly on your local device:</p>
           <ul>
             <li><strong>Hardware-Backed Credential Encryption:</strong> Sensitive proxy credentials (usernames, passwords, Shadowsocks pre-shared keys) are encrypted using <strong>AES-256-GCM</strong> via AndroidX <code>EncryptedSharedPreferences</code>, with master cryptographic keys securely stored in the hardware-backed <strong>Android Keystore system</strong>.</li>
-            <li><strong>Cloud Backup Exclusion:</strong> Sensitive credential vaults are explicitly excluded from Android Auto Backup and Google Drive device transfers (<code>backup_rules.xml</code> and <code>data_extraction_rules.xml</code>) to prevent unauthorized cloud extraction.</li>
-            <li><strong>Manual Backups:</strong> If you export your configuration or save a snapshot to Google Drive, the file is transferred directly via Android's Storage Access Framework (SAF) / FileProvider under your direct control.</li>
+            <li><strong>Cloud Backup Exclusion:</strong> Sensitive credential vaults are explicitly excluded from Android Auto Backup and automated cloud device transfers (<code>backup_rules.xml</code> and <code>data_extraction_rules.xml</code>) to prevent unauthorized cloud extraction.</li>
+            <li><strong>Manual Backups:</strong> If you export your configuration or save a snapshot to your cloud or local storage, the file is transferred directly via Android's Storage Access Framework (SAF) / FileProvider under your direct control.</li>
           </ul>
 
           <h2 id="permissions">5. Android Permissions & Justifications</h2>
@@ -188,8 +188,8 @@
           <p>Netra initiates outbound connections to external endpoints only in the following user-directed scenarios:</p>
           <ol>
             <li><strong>User-Configured Proxy Nodes:</strong> Outbound traffic routed through SOCKS5, HTTP CONNECT, or Shadowsocks connects exclusively to the endpoints you designate.</li>
-            <li><strong>Upstream Encrypted DNS:</strong> If configured, Netra dispatches encrypted DNS queries to standard public resolvers (e.g., Cloudflare <code>1.1.1.1</code>, Google <code>8.8.8.8</code>, Quad9 <code>9.9.9.9</code>).</li>
-            <li><strong>Community Threat Definitions:</strong> When you tap "Update Threat Definitions Now", Netra downloads plain text rule files from reputable public repositories (such as StevenBlack unified hosts). Zero telemetry or device identifiers are sent during these downloads.</li>
+            <li><strong>Upstream Encrypted DNS:</strong> If configured, Netra dispatches encrypted DNS queries to standard public DNS-over-HTTPS resolvers (e.g., standard public Anycast endpoints <code>1.1.1.1</code>, <code>8.8.8.8</code>, <code>9.9.9.9</code>).</li>
+            <li><strong>Community Threat Definitions:</strong> When you tap "Update Threat Definitions Now", Netra downloads plain text rule files from reputable open-source community blocklist repositories. Zero telemetry or device identifiers are sent during these downloads.</li>
           </ol>
 
           <h2 id="regulations">7. Global Privacy Regulations Compliance</h2>
