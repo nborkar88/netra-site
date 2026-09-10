@@ -44,11 +44,22 @@
         "operatingSystem": "Android 8.0 and higher",
         "applicationCategory": "SecurityApplication, NetworkingApplication",
         "description": "On-device privacy tunnel and network proxy utility for Android with multi-protocol support (SOCKS5, HTTP, Shadowsocks), dual-barrier threat protection, and real-time traffic inspection.",
-        "offers": {
-          "@type": "Offer",
-          "price": "0.00",
-          "priceCurrency": "USD"
-        },
+        "offers": [
+          {
+            "@type": "Offer",
+            "name": "Netra Free",
+            "price": "0.00",
+            "priceCurrency": "USD",
+            "description": "Free tier: threat protection, Cloudflare DoH node, traffic analytics."
+          },
+          {
+            "@type": "Offer",
+            "name": "Netra Pro (Monthly)",
+            "price": "To be announced",
+            "priceCurrency": "USD",
+            "description": "Pro tier: unlimited custom proxy nodes, cross-app tracker protection, split tunneling, routing rules engine, and live traffic inspector. Managed via Google Play."
+          }
+        ],
         "publisher": {
           "@type": "Organization",
           "name": "Navarambha Labs",
@@ -157,7 +168,7 @@
         </p>
 
         <div class="hero-cta">
-          <a href="#download" class="btn btn-primary">
+          <a href="https://play.google.com/store/apps/details?id=com.navarambhalabs.netra" class="btn btn-primary">
             <span>⬇️</span> Download on Google Play
           </a>
           <a href="#features" class="btn btn-secondary">
@@ -264,6 +275,14 @@
           <span class="feature-tag">App Exclusion List</span>
         </div>
 
+        <!-- Feature 8: Netra Pro -->
+        <div class="feature-card" style="border: 1.5px solid rgba(37,99,235,0.35); background: linear-gradient(135deg, rgba(37,99,235,0.06) 0%, rgba(255,165,0,0.06) 100%);">
+          <div class="feature-icon-wrapper" style="background: rgba(255,165,0,0.15);">💎</div>
+          <h3>Netra Pro — Unlock Full Power</h3>
+          <p>Upgrade to Netra Pro via Google Play to unlock unlimited custom proxy nodes (SOCKS5, Shadowsocks, HTTP), cross-app tracker protection, smart split tunneling, custom routing rules engine, and the live traffic inspector.</p>
+          <span class="feature-tag" style="background: rgba(37,99,235,0.1); color: #2563eb;">Freemium — Free + Pro</span>
+        </div>
+
       </div>
     </div>
   </section>
@@ -322,7 +341,7 @@
       <div class="section-header">
         <div class="badge-pill">User Experience</div>
         <h2>Captured on Physical Hardware</h2>
-        <p>Real-world captures from a physical Xiaomi Mi A1 device running Android.</p>
+        <p>Real-world captures from physical hardware — Xiaomi Mi A1 (Android 14, 1080×1920) and Lenovo Tab M11 (Android 16, 2560×1600).</p>
       </div>
 
       <div class="gallery-nav">
@@ -535,6 +554,17 @@
           </div>
         </div>
 
+        <div class="faq-item">
+          <button class="faq-question">
+            <span>What is Netra Pro and what does the free tier include?</span>
+            <span class="faq-icon">+</span>
+          </button>
+          <div class="faq-answer">
+            <p>Netra follows a <strong>freemium model</strong>. The <strong>free tier</strong> is fully functional and includes on-device threat & adware shield, one pre-configured Cloudflare DoH node, and real-time traffic analytics — all with zero logs and no account required.</p>
+            <p style="margin-top: 0.5rem;"><strong>Netra Pro</strong> is an optional monthly subscription via Google Play that unlocks: unlimited custom proxy nodes (SOCKS5, Shadowsocks AEAD, HTTP), cross-app tracker protection, smart split tunneling (per-app proxy bypass), the custom routing rules engine (domain/CIDR rules), and the full live traffic inspector. The subscription is managed entirely through Google Play — cancel anytime.</p>
+          </div>
+        </div>
+
       </div>
     </div>
   </section>
@@ -660,15 +690,18 @@
         <p>Experience high-speed proxy tunneling and zero-latency on-device threat protection today.</p>
       </div>
       <div style="display: flex; justify-content: center; gap: 1rem; flex-wrap: wrap;">
-        <a href="mailto:nileshborkar@live.com?subject=Netra%20Android%20Beta%20Access" class="btn btn-primary" style="font-size: 1.05rem; padding: 0.85rem 1.75rem;">
-          <span>🚀</span> Request Early Access / Beta
+        <a href="https://play.google.com/store/apps/details?id=com.navarambhalabs.netra" class="btn btn-primary" style="font-size: 1.05rem; padding: 0.85rem 1.75rem;" aria-label="Download Netra on Google Play">
+          <span>▶️</span> Download on Google Play
         </a>
-        <a href="#features" class="btn btn-secondary" style="font-size: 1.05rem; padding: 0.85rem 1.75rem;">
+        <a href="mailto:nileshborkar@live.com?subject=Netra%20Android%20Beta%20Access" class="btn btn-secondary" style="font-size: 1.05rem; padding: 0.85rem 1.75rem;">
+          <span>🚀</span> Request Beta Access
+        </a>
+        <a href="#features" class="btn btn-outline" style="font-size: 1.05rem; padding: 0.85rem 1.75rem;">
           <span>🔍</span> Explore Features
         </a>
       </div>
       <p style="margin-top: 1.5rem; font-size: 0.88rem; color: var(--text-muted);">
-        Compatible with Android 8.0 (API 26) and above • Coming soon to the Google Play Store
+        Compatible with Android 8.0 (API 26) and above • Freemium — Free tier + Netra Pro subscription via Google Play
       </p>
     </div>
   </section>
